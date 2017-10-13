@@ -23,7 +23,8 @@ def index():
 @app.route('/call', methods=['POST'])
 def call():
     # Get phone number we need to call
-    phone_number = request.form.get('phoneNumber', None)
+    # phone_number = request.form.get('phoneNumber', None)
+    phone_number = "+66949949529"
 
     try:
         twilio_client = Client(app.config['TWILIO_ACCOUNT_SID'],
@@ -44,6 +45,7 @@ def call():
     return jsonify({'message': 'Call incoming!'})
 
 
+
 @app.route('/outbound', methods=['POST'])
 def outbound():
     response = VoiceResponse()
@@ -52,11 +54,11 @@ def outbound():
                  "click to call application was in production, we would "
                  "dial out to your sales team with the Dial verb.",
                  voice='alice')
-    '''
+    
     # Uncomment this code and replace the number with the number you want
     # your customers to call.
-    response.number("+16518675309")
-    '''
+    response.number("+66992866936")
+    
     return str(response)
 
 
@@ -65,3 +67,6 @@ def outbound():
 def landing():
     return render_template('landing.html',
                            configuration_error=None)
+
+if __name__ == '__main__':
+    call()
